@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+<title>Creating our 'Voorhoede logo' using only a font</title>
+<link rel="stylesheet" href="article.css" />
+<link rel="stylesheet" href="logo-font.css" />
+<!--[if lte IE 7]><script src="lte-ie7.js"></script><![endif]-->
+</head>
+<body>
+<article class="w-main centered">
+
+	<header class="clearfix">
+		<h1>Creating our 'Voorhoede logo' using only a font</h1>
+		<figure class="logo-preview">
+			<span class="dvh-font dvh-logo">voorhoede</span>
+			<figcaption>final result: logo using only a font</figcaption>
+		</figure>
+		<p>...</p>
+		<nav class="nav-steps">
+			<ol>
+				<li><a href="#step0">Step 0: Convert the logo into a font</a></li>
+				<li><a href="#step1">Step 1: Display 'voorhoede' as shield</a></li>
+				<li><a href="#step2">Step 2: Add second color to shield</a></li>
+				<li><a href="#step3">Step 3: Highlight the shield's emblem</a></li>
+				<li><a href="#compare">Compare font logo with bitmap logo</a></li>
+			</ol>
+		</nav>
+	</header>
+
+	<section id="step0">
+		<h2>Step 0: Convert the logo into a font</h2>
+		<p>
+			The font is created by splitting the original logo into 3 pieces,
+			which we save as separate SVG files and convert to a font using
+			<a href="http://icomoon.io/app">IcoMoon</a>.
+		</p>
+		<h3>generate icon font</h3>
+		<div class="mtm clearfix" id="glyphs">
+			<div class="glyph">
+				<div class="fs1" aria-hidden="true" data-icon="&#x76;&#x6f;&#x6f;&#x72;&#x68;&#x6f;&#x65;&#x64;&#x65;"></div>
+				<input type="text" readonly="readonly" value="&#x76;&#x6f;&#x6f;&#x72;&#x68;&#x6f;&#x65;&#x64;&#x65;" />
+			</div>
+			<div class="glyph">
+				<div class="fs1" aria-hidden="true" data-icon="&#xe001;"></div>
+				<input type="text" readonly="readonly" value="&amp;#xe001;" />
+			</div>
+			<div class="glyph">
+				<div class="fs1" aria-hidden="true" data-icon="&#xe002;"></div>
+				<input type="text" readonly="readonly" value="&amp;#xe002;" />
+			</div>
+		</div>
+<h3>define font face</h3>
+<pre><code>
+@font-face {
+    font-family: 'dvh-logo';
+    src: url('fonts/dvh-logo.eot');
+    src: url('fonts/dvh-logo.eot?#iefix') format('embedded-opentype'),
+         url('fonts/dvh-logo.woff') format('woff'),
+         url('fonts/dvh-logo.ttf') format('truetype'),
+         url('fonts/dvh-logo.svg#dvh-logo') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+</code></pre>
+<h3>define font class with ligature support</h3>
+<pre><code>
+.dvh-font {
+    font-family: 'dvh-logo', Arial, sans-serif;
+    /* Enable Ligatures */
+    -webkit-font-feature-settings:"liga","dlig";
+       -moz-font-feature-settings:"liga=1, dlig=1";
+       -moz-font-feature-settings:"liga","dlig";
+        -ms-font-feature-settings:"liga","dlig";
+         -o-font-feature-settings:"liga","dlig";
+            font-feature-settings:"liga","dlig";
+    text-rendering:optimizeLegibility;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+</code></pre>
+	</section>
+
+	<section id="step1">
+		<h2>Step 1: Display 'voorhoede' as shield</h2>
+		<p>
+			We want our logo to be accessible, so we start with a simple html tag containing the name of our office 'voorhoede'.
+			We then use our custom font to display this text as our logo by adding the "dvh-font" class. And to enhance the
+			presentation of the logo we add a second class to set the desired color (&amp; size).
+		</p>
+		<h3>define minimal (semantic) markup</h3>
+<pre><code>
+&lt;span class="dvh-font"&gt;
+    voorhoede
+&lt;/span&gt;
+</code></pre>
+	<span class="dvh-font">voorhoede</span>
+		<h3>set shield size &amp; color</h3>
+		<p>...</p>
+<pre><code>
+.dvh-logo {
+    color: #EDDD3D;
+    font-size: 20em;
+}
+</code></pre>
+		<p>...</p>
+<pre><code>
+&lt;span class="dvh-font dvh-logo"&gt;
+    voorhoede
+&lt;/span&gt;
+</code></pre>
+	<h3>Result: Logo with one single color</h3>
+	<span class="dvh-font dvh-logo logo-step1">voorhoede</span>
+	</section>
+
+	<section id="step2">
+		<h2>Step 2: Add second color to shield</h2>
+		<h3>Insert symbol and set color</h3>
+		<p>
+			Fonts are mono chromatic. However we can stack multiple icons
+			on top of each other to achieve our multi colored logo.
+			To add the blue half of the shield we at the symbol ("\e002")
+			of that half as :before content:
+		</p>
+<pre><code>
+.dvh-logo:before {
+    content: "\e002";    // symbol mapped to left half of shield
+    color:   #11343C;    // dark blue
+}
+</code></pre>
+		<h3>Position on top of existing shield</h3>
+		<p>
+			To position it correctly we also define the display &amp; position
+			of our html element. We can then position the blue half exactly on top
+			(absolute, top, left):
+		</p>
+<pre><code>
+.dvh-logo {
+    display: block;
+    position: relative;
+    color: #EDDD3D;
+    font-size: 20em;
+}
+.dvh-logo:before {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "\e002";
+    color: #11343C;
+}
+</code></pre>
+		<h3>Result: Logo with two colors</h3>
+		<span class="dvh-font dvh-logo logo-step2">voorhoede</span>
+	</section>
+
+	<section id="step3">
+		<h2>Step 3: Highlight the shield's emblem</h2>
+		<p>
+			...
+		</p>
+		<h3>Final result: Multi colored logo</h3>
+		<span class="dvh-font dvh-logo">voorhoede</span>
+	</section>
+
+	<section id="compare">
+		<h2>Compare font logo with bitmap logo</h2>
+		<p>
+			...
+		</p>
+	</section>
+
+
+	<footer>
+	</footer>
+</article>
+
+<script>
+document.getElementById("glyphs").addEventListener("click", function(e) {
+	var target = e.target;
+	if (target.tagName === "INPUT") {
+		target.select();
+	}
+});
+</script>
+</body>
+</html>

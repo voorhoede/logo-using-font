@@ -1,0 +1,107 @@
+
+section, header, footer {display: block;}
+body {
+	font-family: sans-serif;
+	color: #444;
+	line-height: 1.5;
+	font-size: 1em;
+}
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+section {
+	padding-bottom: 1em;
+	box-shadow: 0 2px #eee;
+}
+pre {
+	overflow-x: scroll;
+	width: 100%;
+	padding: 0 5% 1em;
+	background-color: #eee;
+}
+h2, h3 {
+	margin-top: .5em;
+}
+p, pre {
+	max-width: 640px;
+}
+
+.nav-steps ol {
+	list-style: none;
+}
+.logo-step1:before,
+.logo-step1:after,
+.logo-step2:after {
+	display: none !important;
+}
+
+.logo-preview {
+	float: left;
+	text-align: center;
+}
+
+.glyph {
+	font-size: 16px;
+	float: left;
+	text-align: center;
+	background: #eee;
+	padding: .75em;
+	margin: .75em 1.5em .75em 0;
+	width: 7.5em;
+	border-radius: .25em;
+	box-shadow: inset 0 0 0 1px #f8f8f8, 0 0 0 1px #CCC;
+}
+.glyph input {
+	font-family: consolas, monospace;
+	font-size: 13px;
+	width: 100%;
+	text-align: center;
+	border: 0;
+	box-shadow: 0 0 0 1px #ccc;
+	padding: .125em;
+}
+.w-main {
+	width: 80%;
+}
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+}
+.fs1 {
+	font-size: 2em;
+}
+header {
+	margin: 2em 0;
+	padding-bottom: .5em;
+	color: #666;
+	box-shadow: 0 2px #eee;
+}
+header h1 {
+	font-size: 2em;
+	font-weight: normal;
+}
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after, .clear { clear: both; }
+footer {
+	margin-top: 2em;
+	padding: .5em 0;
+}
+a, a:visited {
+	text-decoration: none;
+	color: #000;
+}
+a:hover, a:focus {
+	color: #EDDD3D;
+}
+.box1 {
+	font-size: 16px;
+	display: inline-block;
+	width: 15em;
+	padding: .25em .5em;
+	background: #eee;
+	margin: .5em 1em .5em 0;
+}
